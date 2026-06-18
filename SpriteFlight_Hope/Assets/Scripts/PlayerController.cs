@@ -6,12 +6,15 @@ public class PlayerController : MonoBehaviour
     [Header("Settings")]
     public float thrustForce = 1f;
     public float maxSpeed = 5;
+    public float scoremutiplier = 10f; 
 
     [Header("other")]
     public GameObject boostFlame;
 
     //PRIVATE VARIABLES
     private Rigidbody2D _rb;
+    private float _elaspsedTime = 0f;
+    private float _score = 0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -22,8 +25,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        _elaspsedTime += Time.deltaTime;
+        _score = Mathf.FloorToInt(_elaspsedTime * scoremutiplier);
         Thrust();
         FlameOn();
+        Debug.Log(_score);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
