@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("other")]
     public GameObject boostFlame;
+    public GameObject explosionEffect;
 
     //PRIVATE VARIABLES
     private Rigidbody2D _rb;
@@ -39,6 +40,7 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        Instantiate(explosionEffect, transform.position, transform.rotation);
         Destroy(gameObject);
     }
 
@@ -57,7 +59,7 @@ public class PlayerController : MonoBehaviour
             Vector2 direction = (mousePos - transform.position).normalized;
             transform.up = direction;
             _rb.AddForce(direction * thrustForce);
-            Debug.Log("Mouse Position: " + mousePos);
+           
 
             if(_rb.linearVelocity.magnitude > maxSpeed)
                 _rb.linearVelocity = _rb.linearVelocity.normalized * maxSpeed;

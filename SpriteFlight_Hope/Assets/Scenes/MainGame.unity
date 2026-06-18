@@ -1707,6 +1707,10 @@ PrefabInstance:
       propertyPath: thrustForce
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 8235916041033370112, guid: 2792dafac56b78f448cf9cd3a7ae1e45, type: 3}
+      propertyPath: explosionEffect
+      value: 
+      objectReference: {fileID: 607829436554071747, guid: d39e2a843f4d7194291a231ec806d8b3, type: 3}
     - target: {fileID: 9127346288160547920, guid: 2792dafac56b78f448cf9cd3a7ae1e45, type: 3}
       propertyPath: m_Name
       value: Player
