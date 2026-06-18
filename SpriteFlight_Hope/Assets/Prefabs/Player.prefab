@@ -358,3 +358,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcc5e7e135f8d504aab7d50c3c5403f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  thrustForce: 1
+  maxSpeed: 5
+  scoremutiplier: 10
+  uiDocument: {fileID: 0}
+  boostFlame: {fileID: 0}

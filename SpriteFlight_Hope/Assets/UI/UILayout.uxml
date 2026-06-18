@@ -1,9 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ui:UXML
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ui="UnityEngine.UIElements"
-    xmlns:uie="UnityEditor.UIElements"
-    xsi:noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd"
->
-    
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Label text="Score: 0" name="ScoreLabel" style="color: rgb(255, 255, 255); font-size: 30px; -unity-text-align: upper-center; -unity-font-style: bold; -unity-text-outline-color: rgb(0, 0, 0); top: 30px; position: relative; border-top-color: rgb(255, 255, 255); border-top-width: 4px; border-right-width: 4px; border-bottom-width: 4px; border-left-width: 4px; border-top-left-radius: 21px; border-top-right-radius: 21px; border-bottom-right-radius: 21px; border-bottom-left-radius: 21px; border-left-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); width: 185px; left: 500px; -unity-font-definition: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=2230732570650464555&amp;guid=f0165ad658853594b9df5ab7bc241223&amp;type=3#NotInter-Regular&quot;); height: 54px; background-color: rgba(29, 29, 29, 0.77);"/>
 </ui:UXML>

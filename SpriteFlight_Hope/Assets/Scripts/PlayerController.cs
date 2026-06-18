@@ -1,5 +1,8 @@
+using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
@@ -7,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public float thrustForce = 1f;
     public float maxSpeed = 5;
     public float scoremutiplier = 10f; 
+    public UIDocument uiDocument;
 
     [Header("other")]
     public GameObject boostFlame;
@@ -15,26 +19,34 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D _rb;
     private float _elaspsedTime = 0f;
     private float _score = 0f;
+    private Label _scoreText;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _scoreText = uiDocument.rootVisualElement.Q<Label>("ScoreLabel");
     }
 
     // Update is called once per frame
     void Update()
     {
-        _elaspsedTime += Time.deltaTime;
-        _score = Mathf.FloorToInt(_elaspsedTime * scoremutiplier);
+        CalculateScore();
         Thrust();
         FlameOn();
-        Debug.Log(_score);
+        
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
         Destroy(gameObject);
+    }
+
+    private void CalculateScore()
+    {
+        _elaspsedTime += Time.deltaTime;
+        _score = Mathf.FloorToInt(_elaspsedTime * scoremutiplier);
+        _scoreText.text = "Score: " + _score;
     }
 
     private void Thrust()
