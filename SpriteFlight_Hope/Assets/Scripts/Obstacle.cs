@@ -11,6 +11,9 @@ public class Obstacle : MonoBehaviour
     public float maxSpeed = 200f;
     public float spinSpeed = 10f;
 
+    [Header("Bounce")]
+    public GameObject bounceEffectPrefab;
+
     //PRIVATE VARIABLES
     private Rigidbody2D _rb;
 
@@ -33,9 +36,11 @@ public class Obstacle : MonoBehaviour
         _rb.AddTorque(randomTorque);
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        
+        Vector2 contactPoint = collision.GetContact(0).point;
+        GameObject bounceEffect = Instantiate(bounceEffectPrefab, contactPoint, Quaternion.identity);
+
+        Destroy(bounceEffect, 1f);
     }
 }

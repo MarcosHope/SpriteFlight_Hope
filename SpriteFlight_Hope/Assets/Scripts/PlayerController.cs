@@ -1,6 +1,7 @@
 using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UIElements;
 
@@ -21,12 +22,16 @@ public class PlayerController : MonoBehaviour
     private float _elaspsedTime = 0f;
     private float _score = 0f;
     private Label _scoreText;
+    private Button _restartButton;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
         _scoreText = uiDocument.rootVisualElement.Q<Label>("ScoreLabel");
+        _restartButton = uiDocument.rootVisualElement.Q<Button>("RestartButton");
+        _restartButton.style.display = DisplayStyle.None;
+        _restartButton.clicked += ReloadScene;
     }
 
     // Update is called once per frame
@@ -41,6 +46,7 @@ public class PlayerController : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         Instantiate(explosionEffect, transform.position, transform.rotation);
+        _restartButton.style.display = DisplayStyle.Flex;
         Destroy(gameObject);
     }
 
@@ -72,5 +78,10 @@ public class PlayerController : MonoBehaviour
             boostFlame.SetActive(true);
         else
             boostFlame.SetActive(false);
+    }
+
+    private void ReloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

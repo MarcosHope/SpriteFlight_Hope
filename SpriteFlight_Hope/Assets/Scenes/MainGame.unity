@@ -573,10 +573,6 @@ PrefabInstance:
       value: Obstacle (8)
       objectReference: {fileID: 0}
     - target: {fileID: 4065029596856643612, guid: 28f33f2957185ce4aae5dbb9b37b914d, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.9915
-      objectReference: {fileID: 0}
-    - target: {fileID: 4065029596856643612, guid: 28f33f2957185ce4aae5dbb9b37b914d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.84
       objectReference: {fileID: 0}
