@@ -16,6 +16,12 @@ public class PlayerController : MonoBehaviour
     [Header("other")]
     public GameObject boostFlame;
     public GameObject explosionEffect;
+    public GameObject boarders;
+
+    [Header("Settings")]
+    public AudioClip backGroundClip;
+    public AudioClip boosterClip;
+    public AudioClip crashClip;
 
     //PRIVATE VARIABLES
     private Rigidbody2D _rb;
@@ -27,17 +33,20 @@ public class PlayerController : MonoBehaviour
     //High-Score Code
     private int _highScore;
     private Label _highScoreText;
+    private AudioSource _audioSource;
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _audioSource = GetComponent<AudioSource>();
         _scoreText = uiDocument.rootVisualElement.Q<Label>("ScoreLabel");
         _restartButton = uiDocument.rootVisualElement.Q<Button>("RestartButton");
         _restartButton.style.display = DisplayStyle.None;
         _restartButton.clicked += ReloadScene;
 
+        boarders.SetActive(true);
         // High-Score code 
         _highScoreText = uiDocument.rootVisualElement.Q<Label>("HighScoreLabel");
         _highScoreText.style.display = DisplayStyle.None;
@@ -68,9 +77,12 @@ public class PlayerController : MonoBehaviour
         }
 
         Instantiate(explosionEffect, transform.position, transform.rotation);
+        boarders.SetActive(false);
         _restartButton.style.display = DisplayStyle.Flex;
+
         // High-Score code
         _highScoreText.style.display = DisplayStyle.Flex;
+
         Destroy(gameObject);
     }
 

@@ -14,13 +14,18 @@ public class Obstacle : MonoBehaviour
     [Header("Bounce")]
     public GameObject bounceEffectPrefab;
 
+    [Header("Audio")]
+    public AudioClip bounceClip;
+
     //PRIVATE VARIABLES
+    private AudioSource _audioSource;
     private Rigidbody2D _rb;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _audioSource = GetComponent<AudioSource>();
         
         //Size
         float randomSize = Random.Range(minSize, maxSize);
@@ -40,7 +45,7 @@ public class Obstacle : MonoBehaviour
     {
         Vector2 contactPoint = collision.GetContact(0).point;
         GameObject bounceEffect = Instantiate(bounceEffectPrefab, contactPoint, Quaternion.identity);
-
+        _audioSource.PlayOneShot(bounceClip);
         Destroy(bounceEffect, 1f);
     }
 }
