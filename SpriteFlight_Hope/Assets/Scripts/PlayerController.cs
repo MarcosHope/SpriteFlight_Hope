@@ -18,11 +18,9 @@ public class PlayerController : MonoBehaviour
     public GameObject explosionEffect;
     public GameObject boarders;
 
-    [Header("Settings")]
-    public AudioClip backGroundClip;
-    public AudioClip boosterClip;
-    public AudioClip crashClip;
-
+    [Header("Audio")]
+    public AudioSource[] audioSources;
+    
     //PRIVATE VARIABLES
     private Rigidbody2D _rb;
     private float _elaspsedTime = 0f;
@@ -30,6 +28,11 @@ public class PlayerController : MonoBehaviour
     private Label _scoreText;
     private Button _restartButton;
 
+    //PRIVATE AUDIO
+    private int _backgroundClip = 0;
+    private int _shipCrashClip = 1;
+    private int _flameOnClip = 2;
+    
     //High-Score Code
     private int _highScore;
     private Label _highScoreText;
@@ -40,13 +43,16 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
-        _audioSource = GetComponent<AudioSource>();
+       
         _scoreText = uiDocument.rootVisualElement.Q<Label>("ScoreLabel");
         _restartButton = uiDocument.rootVisualElement.Q<Button>("RestartButton");
         _restartButton.style.display = DisplayStyle.None;
         _restartButton.clicked += ReloadScene;
 
+        audioSources[_backgroundClip].Play();
         boarders.SetActive(true);
+     
+
         // High-Score code 
         _highScoreText = uiDocument.rootVisualElement.Q<Label>("HighScoreLabel");
         _highScoreText.style.display = DisplayStyle.None;
@@ -59,8 +65,7 @@ public class PlayerController : MonoBehaviour
     {
         CalculateScore();
         Thrust();
-        FlameOn();
-        
+        FlameOn();    
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -83,6 +88,8 @@ public class PlayerController : MonoBehaviour
         // High-Score code
         _highScoreText.style.display = DisplayStyle.Flex;
 
+        //Death Audio
+        audioSources[_shipCrashClip].Play();
         Destroy(gameObject);
     }
 
@@ -111,9 +118,16 @@ public class PlayerController : MonoBehaviour
     private void FlameOn()
     {
         if(Mouse.current.leftButton.isPressed)
+        {
             boostFlame.SetActive(true);
+            audioSources[_flameOnClip].Play();
+        }
         else
+        {
             boostFlame.SetActive(false);
+            audioSources[_flameOnClip].Pause();
+        }
+           
     }
 
     private void ReloadScene()
