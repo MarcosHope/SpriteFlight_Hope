@@ -24,6 +24,11 @@ public class PlayerController : MonoBehaviour
     private Label _scoreText;
     private Button _restartButton;
 
+    //High-Score Code
+    private int _highScore;
+    private Label _highScoreText;
+    
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -32,6 +37,12 @@ public class PlayerController : MonoBehaviour
         _restartButton = uiDocument.rootVisualElement.Q<Button>("RestartButton");
         _restartButton.style.display = DisplayStyle.None;
         _restartButton.clicked += ReloadScene;
+
+        // High-Score code 
+        _highScoreText = uiDocument.rootVisualElement.Q<Label>("HighScoreLabel");
+        _highScoreText.style.display = DisplayStyle.None;
+        _highScore = PlayerPrefs.GetInt("HighScore", 0);
+        _highScoreText.text = "High Score: " + _highScore;
     }
 
     // Update is called once per frame
@@ -45,8 +56,21 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        int currentScore = Mathf.FloorToInt(_score);
+
+        // High-Score code 
+        if (currentScore > _highScore)
+        {
+            _highScore = currentScore;
+            PlayerPrefs.SetInt("HighScore", _highScore);
+            PlayerPrefs.Save();
+            _highScoreText.text = "Best: " + _highScore;
+        }
+
         Instantiate(explosionEffect, transform.position, transform.rotation);
         _restartButton.style.display = DisplayStyle.Flex;
+        // High-Score code
+        _highScoreText.style.display = DisplayStyle.Flex;
         Destroy(gameObject);
     }
 
