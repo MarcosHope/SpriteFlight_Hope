@@ -10,6 +10,8 @@ public class Sound
     [Range(0.1f, 3f)] public float pitch = 1f;
     public bool loop = false;
 
+    [Range(0.1f, 3f)] public float speed = 1f;
+
     [HideInInspector] public AudioSource source;
 }
 
@@ -36,7 +38,7 @@ public class AudioManager : MonoBehaviour
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
             s.source.volume = s.volume;
-            s.source.pitch = s.pitch;
+            s.source.pitch = s.pitch * s.speed;
             s.source.loop = s.loop;
         }
     }
@@ -46,6 +48,33 @@ public class AudioManager : MonoBehaviour
     public void Stop(string name) => FindSound(name)?.source.Stop();
 
     public void Pause(string name) => FindSound(name)?.source.Pause();
+
+    // Plays the clip and, once it finishes, plays it again — repeats are clean with no overlap.
+    public void PlayUntilDone(string name, int repeatCount = 1)
+    {
+        Sound s = FindSound(name);
+        if (s != null)
+            StartCoroutine(PlayRepeatCoroutine(s, repeatCount));
+    }
+
+    private System.Collections.IEnumerator PlayRepeatCoroutine(Sound s, int repeatCount)
+    {
+        for (int i = 0; i < repeatCount; i++)
+        {
+            s.source.Stop();
+            s.source.Play();
+            yield return new WaitForSeconds(s.source.clip.length / s.source.pitch);
+        }
+    }
+
+    // Changes playback speed at runtime (also adjusts pitch to match).
+    public void SetSpeed(string name, float speed)
+    {
+        Sound s = FindSound(name);
+        if (s == null) return;
+        s.speed = speed;
+        s.source.pitch = s.pitch * s.speed;
+    }
 
     private Sound FindSound(string name)
     {

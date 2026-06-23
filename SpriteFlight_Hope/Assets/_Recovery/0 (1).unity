@@ -194,10 +194,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 64792664}
-  - component: {fileID: 64792666}
   - component: {fileID: 64792663}
   - component: {fileID: 64792662}
   - component: {fileID: 64792665}
+  - component: {fileID: 64792666}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -341,28 +341,24 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
-    speed: 1
     source: {fileID: 0}
   - name: Boost
     clip: {fileID: 8300000, guid: 05e326dffb13b814ca12a8f2192f5bb3, type: 3}
-    volume: 0.802
-    pitch: 3
-    loop: 1
-    speed: 0.66
-    source: {fileID: 0}
-  - name: Background
-    clip: {fileID: 8300000, guid: 919cb4be1369068479b8459af2c0bd14, type: 3}
     volume: 1
     pitch: 1
     loop: 1
-    speed: 1
+    source: {fileID: 0}
+  - name: Background
+    clip: {fileID: 8300000, guid: 919cb4be1369068479b8459af2c0bd14, type: 3}
+    volume: 0.7
+    pitch: 1
+    loop: 1
     source: {fileID: 0}
   - name: Obstacle
     clip: {fileID: 8300000, guid: 9a7640cacc58fe84bac699d1c1a1e4f8, type: 3}
     volume: 0
     pitch: 0
     loop: 0
-    speed: 1
     source: {fileID: 0}
 --- !u!4 &191331356 stripped
 Transform:

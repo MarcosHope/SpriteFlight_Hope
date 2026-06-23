@@ -30,8 +30,7 @@ public class PlayerController : MonoBehaviour
     //High-Score Code
     private int _highScore;
     private Label _highScoreText;
-    private AudioSource _audioSource;
-    
+      
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -84,6 +83,8 @@ public class PlayerController : MonoBehaviour
 
         //Death Audio
         AudioManager.Instance.Play("Die");
+        AudioManager.Instance.Stop("Background");
+        AudioManager.Instance.Stop("Boost");
 
         Destroy(gameObject);
     }
@@ -115,14 +116,14 @@ public class PlayerController : MonoBehaviour
         if(Mouse.current.leftButton.isPressed)
         {
             boostFlame.SetActive(true);
-            AudioManager.Instance.Play("Boost");
+            if (Mouse.current.leftButton.wasPressedThisFrame)
+                AudioManager.Instance.Play("Boost");
         }
         else
         {
             boostFlame.SetActive(false);
             AudioManager.Instance.Stop("Boost");
         }
-           
     }
 
     private void ReloadScene()
