@@ -18,7 +18,10 @@ public class PlayerController : MonoBehaviour
     public GameObject explosionEffect;
     public GameObject boarders;
 
-    
+    [Header("Mobile Controls")]
+    public InputAction moveForward;
+    public InputAction lookPosition;
+
     //PRIVATE VARIABLES
     private Rigidbody2D _rb;
     private float _elaspsedTime = 0f;
@@ -36,7 +39,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
-       
+
+        //Enabeling UI
         _scoreText = uiDocument.rootVisualElement.Q<Label>("ScoreLabel");
         _restartButton = uiDocument.rootVisualElement.Q<Button>("RestartButton");
         _restartButton.style.display = DisplayStyle.None;
@@ -44,13 +48,16 @@ public class PlayerController : MonoBehaviour
 
         AudioManager.Instance.Play("Background");
         boarders.SetActive(true);
-     
 
         // High-Score code 
         _highScoreText = uiDocument.rootVisualElement.Q<Label>("HighScoreLabel");
         _highScoreText.style.display = DisplayStyle.None;
         _highScore = PlayerPrefs.GetInt("HighScore", 0);
         _highScoreText.text = "High Score: " + _highScore;
+
+        //Enabeling mobile controls
+        moveForward.Enable();
+        lookPosition.Enable();
     }
 
     // Update is called once per frame
@@ -98,9 +105,9 @@ public class PlayerController : MonoBehaviour
 
     private void Thrust()
     {
-        if (Mouse.current.leftButton.isPressed)
+        if (moveForward.IsPressed())
         {
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.value);
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(lookPosition.ReadValue<Vector2>());
             Vector2 direction = (mousePos - transform.position).normalized;
             transform.up = direction;
             _rb.AddForce(direction * thrustForce);
@@ -113,13 +120,12 @@ public class PlayerController : MonoBehaviour
 
     private void FlameOn()
     {
-        if(Mouse.current.leftButton.isPressed)
+        if (moveForward.WasPressedThisFrame())
         {
             boostFlame.SetActive(true);
-            if (Mouse.current.leftButton.wasPressedThisFrame)
-                AudioManager.Instance.Play("Boost");
+            AudioManager.Instance.Play("Boost");
         }
-        else
+        else if(moveForward.WasReleasedThisFrame())
         {
             boostFlame.SetActive(false);
             AudioManager.Instance.Stop("Boost");

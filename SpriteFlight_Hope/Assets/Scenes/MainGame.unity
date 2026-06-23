@@ -6393,6 +6393,46 @@ PrefabInstance:
       propertyPath: uiDocument
       value: 
       objectReference: {fileID: 978608801}
+    - target: {fileID: 8235916041033370112, guid: 2792dafac56b78f448cf9cd3a7ae1e45, type: 3}
+      propertyPath: moveForward.m_Name
+      value: Move Forward
+      objectReference: {fileID: 0}
+    - target: {fileID: 8235916041033370112, guid: 2792dafac56b78f448cf9cd3a7ae1e45, type: 3}
+      propertyPath: lookPosition.m_Name
+      value: Look Position
+      objectReference: {fileID: 0}
+    - target: {fileID: 8235916041033370112, guid: 2792dafac56b78f448cf9cd3a7ae1e45, type: 3}
+      propertyPath: moveForward.m_SingletonActionBindings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8235916041033370112, guid: 2792dafac56b78f448cf9cd3a7ae1e45, type: 3}
+      propertyPath: lookPosition.m_SingletonActionBindings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8235916041033370112, guid: 2792dafac56b78f448cf9cd3a7ae1e45, type: 3}
+      propertyPath: moveForward.m_SingletonActionBindings.Array.data[0].m_Id
+      value: b95f7ea9-1e99-451e-ac59-a64dd91b1c09
+      objectReference: {fileID: 0}
+    - target: {fileID: 8235916041033370112, guid: 2792dafac56b78f448cf9cd3a7ae1e45, type: 3}
+      propertyPath: lookPosition.m_SingletonActionBindings.Array.data[0].m_Id
+      value: 2a7d9df6-0292-4115-bf3a-26cffcf4ce06
+      objectReference: {fileID: 0}
+    - target: {fileID: 8235916041033370112, guid: 2792dafac56b78f448cf9cd3a7ae1e45, type: 3}
+      propertyPath: moveForward.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Pointer>/press
+      objectReference: {fileID: 0}
+    - target: {fileID: 8235916041033370112, guid: 2792dafac56b78f448cf9cd3a7ae1e45, type: 3}
+      propertyPath: lookPosition.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Pointer>/position
+      objectReference: {fileID: 0}
+    - target: {fileID: 8235916041033370112, guid: 2792dafac56b78f448cf9cd3a7ae1e45, type: 3}
+      propertyPath: moveForward.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Move Forward
+      objectReference: {fileID: 0}
+    - target: {fileID: 8235916041033370112, guid: 2792dafac56b78f448cf9cd3a7ae1e45, type: 3}
+      propertyPath: lookPosition.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Look Position
+      objectReference: {fileID: 0}
     - target: {fileID: 9127346288160547920, guid: 2792dafac56b78f448cf9cd3a7ae1e45, type: 3}
       propertyPath: m_Name
       value: Player
