@@ -18,8 +18,6 @@ public class PlayerController : MonoBehaviour
     public GameObject explosionEffect;
     public GameObject boarders;
 
-    [Header("Audio")]
-    public AudioSource[] audioSources;
     
     //PRIVATE VARIABLES
     private Rigidbody2D _rb;
@@ -28,10 +26,6 @@ public class PlayerController : MonoBehaviour
     private Label _scoreText;
     private Button _restartButton;
 
-    //PRIVATE AUDIO
-    private int _backgroundClip = 0;
-    private int _shipCrashClip = 1;
-    private int _flameOnClip = 2;
     
     //High-Score Code
     private int _highScore;
@@ -49,7 +43,7 @@ public class PlayerController : MonoBehaviour
         _restartButton.style.display = DisplayStyle.None;
         _restartButton.clicked += ReloadScene;
 
-        audioSources[_backgroundClip].Play();
+        AudioManager.Instance.Play("Background");
         boarders.SetActive(true);
      
 
@@ -89,7 +83,8 @@ public class PlayerController : MonoBehaviour
         _highScoreText.style.display = DisplayStyle.Flex;
 
         //Death Audio
-        audioSources[_shipCrashClip].Play();
+        AudioManager.Instance.Play("Die");
+
         Destroy(gameObject);
     }
 
@@ -120,12 +115,12 @@ public class PlayerController : MonoBehaviour
         if(Mouse.current.leftButton.isPressed)
         {
             boostFlame.SetActive(true);
-            audioSources[_flameOnClip].Play();
+            AudioManager.Instance.Play("Boost");
         }
         else
         {
             boostFlame.SetActive(false);
-            audioSources[_flameOnClip].Pause();
+            AudioManager.Instance.Stop("Boost");
         }
            
     }

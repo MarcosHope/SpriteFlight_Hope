@@ -197,6 +197,7 @@ GameObject:
   - component: {fileID: 64792663}
   - component: {fileID: 64792662}
   - component: {fileID: 64792665}
+  - component: {fileID: 64792666}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -322,6 +323,43 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &64792666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 64792661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb7d803b09d0d234b98dc269282e02c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioManager
+  sounds:
+  - name: Die
+    clip: {fileID: 8300000, guid: b2c5debc83d803c4ea974bb8ea6d9050, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Boost
+    clip: {fileID: 8300000, guid: 05e326dffb13b814ca12a8f2192f5bb3, type: 3}
+    volume: 1
+    pitch: 3
+    loop: 1
+    source: {fileID: 0}
+  - name: Background
+    clip: {fileID: 8300000, guid: 919cb4be1369068479b8459af2c0bd14, type: 3}
+    volume: 0.7
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Obstacle
+    clip: {fileID: 8300000, guid: 9a7640cacc58fe84bac699d1c1a1e4f8, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
 --- !u!4 &191331356 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4065029596856643612, guid: 28f33f2957185ce4aae5dbb9b37b914d, type: 3}
@@ -6287,14 +6325,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 819998973428426447, guid: 2792dafac56b78f448cf9cd3a7ae1e45, type: 3}
-      propertyPath: m_Pitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 819998973428426447, guid: 2792dafac56b78f448cf9cd3a7ae1e45, type: 3}
-      propertyPath: m_Resource
-      value: 
-      objectReference: {fileID: 8300000, guid: 52b9fdebb012b904592415cddf8353ff, type: 3}
     - target: {fileID: 1972493619134544427, guid: 2792dafac56b78f448cf9cd3a7ae1e45, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -6337,12 +6367,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2900614757201327335, guid: 2792dafac56b78f448cf9cd3a7ae1e45, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2977444194545571204, guid: 2792dafac56b78f448cf9cd3a7ae1e45, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4605212001431120725, guid: 2792dafac56b78f448cf9cd3a7ae1e45, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6290209069047076905, guid: 2792dafac56b78f448cf9cd3a7ae1e45, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: b2c5debc83d803c4ea974bb8ea6d9050, type: 3}
     - target: {fileID: 8235916041033370112, guid: 2792dafac56b78f448cf9cd3a7ae1e45, type: 3}
       propertyPath: boarders
       value: 
@@ -6355,7 +6393,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3050109811886306703, guid: 2792dafac56b78f448cf9cd3a7ae1e45, type: 3}
+    - {fileID: 6290209069047076905, guid: 2792dafac56b78f448cf9cd3a7ae1e45, type: 3}
+    - {fileID: 819998973428426447, guid: 2792dafac56b78f448cf9cd3a7ae1e45, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
