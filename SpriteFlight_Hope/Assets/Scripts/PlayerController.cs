@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     [Header("Settings")]
     public float thrustForce = 1f;
     public float maxSpeed = 5;
-    public float scoremutiplier = 10f; 
+    public float scoremutiplier = 10f;
     public UIDocument uiDocument;
 
     [Header("other")]
@@ -29,11 +29,11 @@ public class PlayerController : MonoBehaviour
     private Label _scoreText;
     private Button _restartButton;
 
-    
+
     //High-Score Code
     private int _highScore;
     private Label _highScoreText;
-      
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
     {
         CalculateScore();
         Thrust();
-        FlameOn();    
+        FlameOn();
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -111,9 +111,9 @@ public class PlayerController : MonoBehaviour
             Vector2 direction = (mousePos - transform.position).normalized;
             transform.up = direction;
             _rb.AddForce(direction * thrustForce);
-           
 
-            if(_rb.linearVelocity.magnitude > maxSpeed)
+
+            if (_rb.linearVelocity.magnitude > maxSpeed)
                 _rb.linearVelocity = _rb.linearVelocity.normalized * maxSpeed;
         }
     }
@@ -125,7 +125,7 @@ public class PlayerController : MonoBehaviour
             boostFlame.SetActive(true);
             AudioManager.Instance.Play("Boost");
         }
-        else if(moveForward.WasReleasedThisFrame())
+        else if (moveForward.WasReleasedThisFrame())
         {
             boostFlame.SetActive(false);
             AudioManager.Instance.Stop("Boost");
